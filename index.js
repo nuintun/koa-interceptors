@@ -130,11 +130,15 @@ Interceptors.prototype.mapping = function (dir){
                       // assert method
                       if (util.string(method)
                         && methods.indexOf(method_lower = method.toLowerCase()) !== -1) {
-                        // set auto router info
+                        // set auto router data
                         ctx[method_lower](url, function (ctx, next){
-                          ctx.router = router_src;
-                          ctx.controller = controller_src;
-                          ctx.action = action_name;
+                          var routeData = ctx.routeData || {};
+
+                          routeData.router = router_src;
+                          routeData.controller = controller_src;
+                          routeData.action = action_name;
+
+                          ctx.routeData = routeData;
 
                           return next();
                         });

@@ -1,7 +1,7 @@
 {
   "name": "koa-interceptors",
   "description": "An Interceptors middleware for koa2",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": {
     "name": "nuintun",
     "email": "nuintun@qq.com"
