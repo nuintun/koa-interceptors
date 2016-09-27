@@ -12,27 +12,6 @@ const Router = require('koa-router');
 const routes = Router.prototype.routes;
 
 /**
- * src for router
- * @param router_src
- * @param router_base
- * @returns {*|string}
- */
-function src4router(router_src, router_base){
-  return util.normalize(path.join(router_base, router_src));
-}
-
-/**
- * src for controller
- * @param controller_src
- * @param router_base
- * @param controller_base
- * @returns {*|string}
- */
-function src4controller(controller_src, router_base, controller_base){
-  return util.normalize(path.join(controller_base, path.relative(router_base, controller_src)))
-}
-
-/**
  * Interceptors
  * @param router_base
  * @param controller_base
@@ -60,8 +39,8 @@ function Interceptors(router_base, controller_base, options){
 
   // set prop
   ctx.router_set = [];
-  ctx.router_base = router_base;
-  ctx.controller_base = controller_base;
+  ctx.router_base = util.realpath(router_base);
+  ctx.controller_base = util.realpath(controller_base);
 
   // call mapping
   ctx.mapping(ctx.router_base);
@@ -86,7 +65,7 @@ Interceptors.prototype.mapping = function (dir){
   fs
     .readdirSync(dir)
     .forEach(function (filename){
-      var router_src = src4router(filename, dir);
+      var router_src = util.src4router(filename, dir);
       var stats = fs.statSync(router_src);
 
       // dir
@@ -98,16 +77,19 @@ Interceptors.prototype.mapping = function (dir){
           .toLowerCase();
 
         if (ext === '.js') {
-          var routes = util.require(router_src);
-          var controller_src = src4controller(router_src, ctx.router_base, ctx.controller_base);
+          var routes = require(router_src);
+          var router_path = util.path2cwd(router_src);
+          var controller_src = util.src4controller(router_src, ctx.router_base, ctx.controller_base);
 
           // assert routes
           if (util.object(routes)) {
+            var controller_path = util.path2cwd(controller_src);
+
             // load controller
             try {
-              var controller = util.require(controller_src);
+              var controller = require(controller_src);
             } catch (e) {
-              throw new Error(`Controller: ${controller_src} not found!`)
+              throw new Error(`Controller: ${controller_path} not found!`)
             }
 
             // assert controller
@@ -134,9 +116,9 @@ Interceptors.prototype.mapping = function (dir){
                         ctx[method_lower](url, function (ctx, next){
                           var routeData = ctx.routeData || {};
 
-                          routeData.router = router_src;
-                          routeData.controller = controller_src;
                           routeData.action = action_name;
+                          routeData.router = router_path;
+                          routeData.controller = controller_path;
 
                           ctx.routeData = routeData;
 
@@ -153,18 +135,18 @@ Interceptors.prototype.mapping = function (dir){
                         throw new TypeError(`Method: ${method} not support!`);
                       }
                     } else {
-                      throw new Error(`Action: ${action_name} can't be found in controller: ${controller_src}!`);
+                      throw new Error(`Action: ${action_name} can't be found in controller: ${controller_path}!`);
                     }
                   });
                 } else {
-                  throw new TypeError(`Route: ${url} invalid!`)
+                  throw new TypeError(`Route: ${url} invalid!`);
                 }
               });
             } else {
-              throw new TypeError(`Controller: ${controller_src} invalid!`)
+              throw new TypeError(`Controller: ${controller_path} invalid!`)
             }
           } else {
-            throw new TypeError(`Router: ${router_src} invalid!`);
+            throw new TypeError(`Router: ${router_path} invalid!`);
           }
         }
       }
