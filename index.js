@@ -27,11 +27,11 @@ function Interceptors(router_base, controller_base, options){
   }
 
   if (!router_base || !util.string(router_base)) {
-    router_base = 'routers';
+    router_base = '/routers';
   }
 
   if (!controller_base || !util.string(controller_base)) {
-    controller_base = 'controllers';
+    controller_base = '/controllers';
   }
 
   // super
