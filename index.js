@@ -42,8 +42,8 @@ function Interceptors(router_base, controller_base, options){
   ctx.router_base = util.realpath(router_base);
   ctx.controller_base = util.realpath(controller_base);
 
-  // call mapping
-  ctx.mapping(ctx.router_base);
+  // call invoke
+  ctx.invoke(ctx.router_base);
 }
 
 /**
@@ -55,11 +55,11 @@ Interceptors.prototype = Object.create(Router.prototype, {
 });
 
 /**
- * mapping controller
+ * invoke controller
  * @param dir
  * @returns {Router}
  */
-Interceptors.prototype.mapping = function (dir){
+Interceptors.prototype.invoke = function (dir){
   var ctx = this;
 
   fs
