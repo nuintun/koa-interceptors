@@ -12,7 +12,8 @@ The interceptor automatically associates the router with the controller.
 
 ###Usage
 ```app.js```
-<br/>
+
+
 ```js
 'use strict';
 
@@ -35,7 +36,8 @@ app.use(interceptors.routes());
 ```
 
 ```/routers/home/index.js```
-<br/>
+
+
 ```js
 'use strict';
 
@@ -49,7 +51,8 @@ module.exports = {
 ```
 
 ```/controllers/home/index.js```
-<br/>
+
+
 ```js
 'use strict';
 
