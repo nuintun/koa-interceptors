@@ -71,6 +71,9 @@ $ npm install koa-interceptors --save
 
 ##### Others see: [koa-router][koa-router-url]
 
+###Notice
+The interceptor will add a property `routeData` on koa ctx.
+
 [npm-image]: http://img.shields.io/npm/v/koa-interceptors.svg?style=flat-square
 [npm-url]: https://www.npmjs.org/package/koa-interceptors
 [download-image]: http://img.shields.io/npm/dm/koa-interceptors.svg?style=flat-square
