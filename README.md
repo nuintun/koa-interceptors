@@ -33,37 +33,28 @@ interceptors.use(convert(session()));
 app.use(interceptors.routes());
 ```
 
-`/routers/home/index.js`
+`/routers/home/login.js`
 ```js
 'use strict';
 
 module.exports = {
-  '/': [
-    {
-      method: 'get', // if get can be omitted
-      action: 'index' // page action
-    }
-  ],
   'login': [
     {
       action: 'login' // page action
     },
     {
-      method: 'post',
+      method: 'post', // if get can be omitted
       action: 'validate-login' // page action
     }
   ]
 };
 ```
 
-`/controllers/home/index.js`
+`/controllers/home/login.js`
 ```js
 'use strict';
 
 module.exports = {
-  index: ctx=>{
-    // page action logic
-  },
   login: ctx=>{
     // page action logic
   },
