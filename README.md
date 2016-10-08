@@ -7,6 +7,10 @@ koa-interceptors
 >[![Download Status][download-image]][npm-url]
 >[![Dependencies][david-image]][david-url]
 
+###Introduction:
+
+
+###Usage
 ```js
   const koa = require('koa');
   const convert = require('koa-convert');
@@ -24,9 +28,6 @@ koa-interceptors
   // load routes
   app.use(interceptors.routes());
 ```
-
-###Introduction:
-
 
 ###Install
 ```
