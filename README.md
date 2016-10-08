@@ -43,6 +43,15 @@ module.exports = {
       method: 'get', // if get can be omitted
       action: 'index' // page action
     }
+  ],
+  'login': [
+    {
+      action: 'login' // page action
+    },
+    {
+      method: 'post',
+      action: 'validate-login' // page action
+    }
   ]
 };
 ```
@@ -54,7 +63,13 @@ module.exports = {
 module.exports = {
   index: ctx=>{
     // page action logic
-  }
+  },
+  login: ctx=>{
+    // page action logic
+  },
+  'validate-login': ctx=>{
+    // page action logic
+  },
 };
 ```
 
