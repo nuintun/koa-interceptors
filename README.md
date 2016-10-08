@@ -11,7 +11,9 @@ koa-interceptors
 The interceptor automatically associates the router with the controller.
 
 ###Usage
-```app.js```
+```
+app.js
+```
 ```js
 'use strict';
 
@@ -33,7 +35,9 @@ interceptors.use(convert(session()));
 app.use(interceptors.routes());
 ```
 
-```/routers/home/index.js```
+```
+/routers/home/index.js
+```
 ```js
 'use strict';
 
@@ -46,7 +50,9 @@ module.exports = {
 };
 ```
 
-```/controllers/home/index.js``` 
+```
+/controllers/home/index.js
+```
 ```js
 'use strict';
 
