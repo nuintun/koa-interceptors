@@ -63,8 +63,15 @@ module.exports = {
 $ npm install koa-interceptors --save
 ```
 
+###API
+#####Interceptors([routers, controllers, options])
+- `routers` the routers base dir.
+- `controllers` the routers base dir.
+- `options` the [koa-router](koa-router) options.
+
 [npm-image]: http://img.shields.io/npm/v/koa-interceptors.svg?style=flat-square
 [npm-url]: https://www.npmjs.org/package/koa-interceptors
 [download-image]: http://img.shields.io/npm/dm/koa-interceptors.svg?style=flat-square
 [david-image]: http://img.shields.io/david/nuintun/koa-interceptors.svg?style=flat-square
 [david-url]: https://david-dm.org/nuintun/koa-interceptors
+[koa-router]: https://github.com/alexmingoia/koa-router
