@@ -67,13 +67,13 @@ $ npm install koa-interceptors --save
 #####Interceptors([routers, controllers, options])
 - `routers`: the routers base dir.
 - `controllers`: the controllers base dir.
-- `options`: the [koa-router](koa-router) options.
+- `options`: the [koa-router](koa-router-url) options.
 
-##### Others see: [koa-router](koa-router)
+##### Others see: [koa-router](koa-router-url)
 
 [npm-image]: http://img.shields.io/npm/v/koa-interceptors.svg?style=flat-square
 [npm-url]: https://www.npmjs.org/package/koa-interceptors
 [download-image]: http://img.shields.io/npm/dm/koa-interceptors.svg?style=flat-square
 [david-image]: http://img.shields.io/david/nuintun/koa-interceptors.svg?style=flat-square
 [david-url]: https://david-dm.org/nuintun/koa-interceptors
-[koa-router]: https://github.com/alexmingoia/koa-router
+[koa-router-url]: https://github.com/alexmingoia/koa-router
