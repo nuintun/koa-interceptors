@@ -23,8 +23,8 @@ const Interceptors = require('koa-interceptors');
 
 // app
 const app = new koa();
-// routers and controllers is optional parameter
-const interceptors = new Interceptors('/routers', '/controllers');
+// interceptors
+const interceptors = new Interceptors();
 
 // use session
 interceptors.use(convert(session()));
