@@ -66,7 +66,7 @@ $ npm install koa-interceptors --save
 ###API
 #####Interceptors([routers, controllers, options])
 - `routers`: the routers base dir.
-- `controllers`: the routers base dir.
+- `controllers`: the controllers base dir.
 - `options`: the [koa-router](koa-router) options.
 
 ##### Others see: [koa-router](koa-router)
