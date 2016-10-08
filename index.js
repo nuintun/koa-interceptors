@@ -4,12 +4,18 @@
 
 'use strict';
 
+const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const util = require('./lib/util');
 const methods = require('methods');
 const Router = require('koa-router');
 const routes = Router.prototype.routes;
+
+// end of line
+const EOL = os.EOL;
+// module not found
+const MODULE_NOT_FOUND = 'MODULE_NOT_FOUND';
 
 /**
  * Interceptors
@@ -70,7 +76,7 @@ Interceptors.prototype.invoke = function (dir){
 
       // dir
       if (stats.isDirectory()) {
-        ctx.mapping(router_src);
+        ctx.invoke(router_src);
       } else {
         var ext = path
           .extname(router_src)
@@ -88,8 +94,12 @@ Interceptors.prototype.invoke = function (dir){
             // load controller
             try {
               var controller = require(controller_src);
-            } catch (e) {
-              throw new Error(`Controller: ${controller_path} not found!`)
+            } catch (error) {
+              if (error.code === MODULE_NOT_FOUND) {
+                throw new Error(`Controller: ${controller_path} not found!`);
+              } else {
+                throw new Error(`Controller: ${controller_path} error occurred!${ EOL }  ${ error }`);
+              }
             }
 
             // assert controller
