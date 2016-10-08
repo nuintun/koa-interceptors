@@ -41,7 +41,7 @@ module.exports = {
   '/': [
     {
       method: 'get', // if get can be omitted
-      action: 'index'
+      action: 'index' // page action
     }
   ]
 };
@@ -53,7 +53,7 @@ module.exports = {
 
 module.exports = {
   index: ctx=>{
-    // action logic
+    // page action logic
   }
 };
 ```
