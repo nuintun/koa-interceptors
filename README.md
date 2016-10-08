@@ -40,6 +40,7 @@ app.use(interceptors.routes());
 module.exports = {
   '/': [
     {
+      method: 'get', // if get can be omitted
       action: 'index'
     }
   ]
