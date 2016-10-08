@@ -8,25 +8,53 @@ koa-interceptors
 >[![Dependencies][david-image]][david-url]
 
 ###Introduction:
-
+The interceptor automatically associates the router with the controller.
 
 ###Usage
+```app.js```
 ```js
-  const koa = require('koa');
-  const convert = require('koa-convert');
-  const session = require('koa-session');
-  const Interceptors = require('koa-interceptors');
+'use strict';
 
-  // app
-  const app = new koa();
-  // routers and controllers is optional parameter
-  const interceptors = new Interceptors('/routers', '/controllers');
+// modules
+const koa = require('koa');
+const convert = require('koa-convert');
+const session = require('koa-session');
+const Interceptors = require('koa-interceptors');
 
-  // use session
-  interceptors.use(convert(session()));
+// app
+const app = new koa();
+// routers and controllers is optional parameter
+const interceptors = new Interceptors('/routers', '/controllers');
 
-  // load routes
-  app.use(interceptors.routes());
+// use session
+interceptors.use(convert(session()));
+
+// load routes
+app.use(interceptors.routes());
+```
+
+```/routers/home/index.js```
+```js
+'use strict';
+
+module.exports = {
+  '/': [
+    {
+      action: 'index'
+    }
+  ]
+};
+```
+
+```/controllers/home/index.js```
+```js
+'use strict';
+
+module.exports = {
+  index: ctx=>{
+    // action logic
+  }
+};
 ```
 
 ###Install
