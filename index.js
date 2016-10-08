@@ -98,7 +98,7 @@ Interceptors.prototype.invoke = function (dir){
               if (error.code === MODULE_NOT_FOUND) {
                 throw new Error(`Controller: ${controller_path} not found!`);
               } else {
-                throw new Error(`Controller: ${controller_path} error occurred!${ EOL }  ${ error }`);
+                throw new Error(`Controller: ${controller_path} error occurred!${EOL}  ${error}`);
               }
             }
 
