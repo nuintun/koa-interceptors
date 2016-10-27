@@ -38,7 +38,7 @@ app.use(interceptors.routes());
 'use strict';
 
 module.exports = {
-  'login': [
+  '/login': [
     {
       action: 'login' // page action
     },
