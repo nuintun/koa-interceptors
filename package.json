@@ -1,7 +1,7 @@
 {
   "name": "koa-interceptors",
   "description": "An Interceptors middleware for koa2",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": {
     "name": "nuintun",
     "email": "nuintun@qq.com"
@@ -15,6 +15,9 @@
     "url": "https://github.com/nuintun/koa-interceptors/issues",
     "email": "nuintun@qq.com"
   },
+  "engines": {
+    "node": ">= 7.6.0"
+  },
   "license": "MIT",
   "keywords": [
     "koa",
@@ -27,6 +30,6 @@
   ],
   "dependencies": {
     "methods": "^1.1.2",
-    "koa-router": "^7.1.1"
+    "koa-router": "^7.3.0"
   }
 }
