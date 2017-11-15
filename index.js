@@ -27,10 +27,6 @@ class Interceptors extends Router {
    * @param {Object} options
    */
   constructor(router_base, controller_base, options) {
-    if (!(this instanceof Interceptors)) {
-      return new Interceptors(router_base, controller_base, options);
-    }
-
     if (!router_base || !utils.string(router_base)) {
       router_base = '/routers';
     }
@@ -58,7 +54,7 @@ class Interceptors extends Router {
   invoke(dir) {
     fs.readdirSync(dir)
       .forEach((filename) => {
-        const router_src = util.src4router(filename, dir);
+        const router_src = utils.src4router(filename, dir);
         const stats = fs.statSync(router_src);
 
         // Is dir
@@ -69,13 +65,13 @@ class Interceptors extends Router {
 
           if (ext === '.js') {
             const routes = require(router_src);
-            const router_path = util.path2cwd(router_src);
-            const controller_src = util.src4controller(router_src, this.router_base, this.controller_base);
+            const router_path = utils.path2cwd(router_src);
+            const controller_src = utils.src4controller(router_src, this.router_base, this.controller_base);
 
             // Assert routes
-            if (util.object(routes)) {
+            if (utils.object(routes)) {
               let controller;
-              const controller_path = util.path2cwd(controller_src);
+              const controller_path = utils.path2cwd(controller_src);
 
               // Load controller
               try {
@@ -89,12 +85,12 @@ class Interceptors extends Router {
               }
 
               // Assert controller
-              if (util.object(controller)) {
+              if (utils.object(controller)) {
                 Object.keys(routes).forEach((url) => {
                   const route = routes[url];
 
                   // Assert route
-                  if (util.array(route)) {
+                  if (utils.array(route)) {
                     route.forEach((item) => {
                       const action_name = item.action;
                       const action = controller[action_name];
@@ -105,7 +101,7 @@ class Interceptors extends Router {
                         const method = route.hasOwnProperty('method') ? route.method : 'GET';
 
                         // assert method
-                        if (util.string(method)
+                        if (utils.string(method)
                           && methods.indexOf(method_lower = method.toLowerCase()) !== -1) {
                           // set auto router data
                           this[method_lower](url, (ctx, next) => {
