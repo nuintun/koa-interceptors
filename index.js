@@ -105,8 +105,8 @@ class Interceptors extends Router {
                         const method = route.hasOwnProperty('method') ? route.method : 'GET';
 
                         // assert method
-                        if (util.string(method) &&
-                          methods.indexOf(method_lower = method.toLowerCase()) !== -1) {
+                        if (util.string(method)
+                          && methods.indexOf(method_lower = method.toLowerCase()) !== -1) {
                           // set auto router data
                           this[method_lower](url, (ctx, next) => {
                             const routeData = ctx.routeData || {};
@@ -173,7 +173,6 @@ class Interceptors extends Router {
  * @returns {string}
  */
 Interceptors.url = Router.url;
-
 
 // exports
 module.exports = Interceptors;
